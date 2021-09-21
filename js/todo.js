@@ -2,6 +2,11 @@ const toDoform = document.querySelector("#todo-form")
 const toDoInput = toDoform.querySelector("input")
 const toDoList = document.querySelector("#todo-list")
 
+const toDos = [];
+
+function saveToDos() {
+  localStorage.setItem("todos", JSON.stringify(toDos))
+}
 
 function deleteTodo(event) {
   const li = event.target.parentElement;
@@ -24,10 +29,10 @@ function patinToDo(newTodo) {
 function handleToDoSubmit(event) {
   event.preventDefault()
   const newTodo = toDoInput.value;
-
   toDoInput.value = "";
-
+  toDos.push(newTodo)
   patinToDo(newTodo)
+  saveToDos();
 }
 
 
